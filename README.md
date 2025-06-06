@@ -18,6 +18,6 @@ Currently working on random projects.  I am also planning on making a TIL and Bl
 <!-- tils starts -->
 
 <!-- tils ends -->
-</td></table>
+</td></tr></table>
 
 <img src="https://github.com/accoustium/accoustium/workflows/Build%20README/badge.svg" align="right" alt="Build README">
