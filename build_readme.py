@@ -1,3 +1,5 @@
+# This is adapted from https://github.com/simonw/simonw/tree/main
+
 from python_graphql_client import GraphqlClient
 import feedparser
 import httpx
@@ -106,12 +108,13 @@ def fetch_releases(oauth_token):
 
 
 def fetch_tils():
+    url = None
     sql = """
         select path, replace(title, '_', '\_') as title, url, topic, slug, created_utc
         from til order by created_utc desc limit 6
     """.strip()
     return httpx.get(
-        "https://til.simonwillison.net/tils.json",
+        url,
         params={
             "sql": sql,
             "_shape": "array",
@@ -120,7 +123,8 @@ def fetch_tils():
 
 
 def fetch_blog_entries():
-    entries = feedparser.parse("https://simonwillison.net/atom/entries/")["entries"]
+    url = None
+    entries = feedparser.parse(url)["entries"]
     return [
         {
             "title": entry["title"],
@@ -180,7 +184,7 @@ if __name__ == "__main__":
     # tils = fetch_tils()
     # tils_md = "\n\n".join(
     #     [
-    #         "[{title}](https://til.simonwillison.net/{topic}/{slug}) - {created_at}".format(
+    #         "[{title}]({url_base}{topic}/{slug}) - {created_at}".format(
     #             title=til["title"],
     #             topic=til["topic"],
     #             slug=til["slug"],
