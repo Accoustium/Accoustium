@@ -108,6 +108,7 @@ def fetch_releases(oauth_token):
 
 
 def fetch_tils():
+    return []
     url = None
     sql = """
         select path, replace(title, '_', '\_') as title, url, topic, slug, created_utc
@@ -123,6 +124,7 @@ def fetch_tils():
 
 
 def fetch_blog_entries():
+    return []
     url = None
     entries = feedparser.parse(url)["entries"]
     return [
@@ -181,24 +183,25 @@ if __name__ == "__main__":
     )
     project_releases.open("w").write(project_releases_content)
 
-    # tils = fetch_tils()
-    # tils_md = "\n\n".join(
-    #     [
-    #         "[{title}]({url_base}{topic}/{slug}) - {created_at}".format(
-    #             title=til["title"],
-    #             topic=til["topic"],
-    #             slug=til["slug"],
-    #             created_at=til["created_utc"].split("T")[0],
-    #         )
-    #         for til in tils
-    #     ]
-    # )
-    # rewritten = replace_chunk(rewritten, "tils", tils_md)
-    #
-    # entries = fetch_blog_entries()[:6]
-    # entries_md = "\n\n".join(
-    #     ["[{title}]({url}) - {published}".format(**entry) for entry in entries]
-    # )
-    # rewritten = replace_chunk(rewritten, "blog", entries_md)
+    tils = fetch_tils()
+    tils_md = "\n\n".join(
+        [
+            "[{title}]({url_base}{topic}/{slug}) - {created_at}".format(
+                title=til["title"],
+                topic=til["topic"],
+                slug=til["slug"],
+                url_base="https://accoustium.github.io/til/",
+                created_at=til["created_utc"].split("T")[0],
+            )
+            for til in tils
+        ]
+    )
+    rewritten = replace_chunk(rewritten, "tils", tils_md)
+
+    entries = fetch_blog_entries()[:6]
+    entries_md = "\n\n".join(
+        ["[{title}]({url}) - {published}".format(**entry) for entry in entries]
+    )
+    rewritten = replace_chunk(rewritten, "blog", entries_md)
 
     readme.open("w").write(rewritten)
