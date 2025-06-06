@@ -15,6 +15,6 @@ Currently working on associated projects.
 ### TIL
 <!-- tils starts -->
 
-</td><td></table>
+</td></table>
 
 <img src="https://github.com/accoustium/accoustium/workflows/Build%20README/badge.svg" align="right" alt="Build README">
