@@ -1,4 +1,4 @@
-Currently working on associated projects.
+Currently working on random projects.  I am also planning on making a TIL and Blog for personal growth.
 
 <table><tr><td valign="top" width="33%">
 
