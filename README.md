@@ -4,7 +4,7 @@ Currently working on random projects.  I am also planning on making a TIL and Bl
 
 ### Recent releases
 <!-- recent_releases starts -->
-[AternosDiscord v1.1.1](https://github.com/Accoustium/AternosDiscord/releases/tag/v1.1.1) - 2025-06-13
+
 <!-- recent_releases ends -->
 </td><td valign="top" width="34%">
 
